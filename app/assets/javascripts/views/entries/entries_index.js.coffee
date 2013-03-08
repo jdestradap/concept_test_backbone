@@ -6,7 +6,7 @@ class ConceptTest.Views.EntriesIndex extends Backbone.View
           'click #draw': 'drawWinner'
 
   initialize: ->
-    @collection.on('reset', @render, this)
+    @collection.on('responseText', @render, this)
     @collection.on('add', @appendEntry, this)
 
   render: ->
@@ -22,9 +22,9 @@ class ConceptTest.Views.EntriesIndex extends Backbone.View
       success: -> $('#new_entry')[0].reset()
       error: @handleError
 
-  appendEntry: (entry) ->
+  appendEntry: (entry) =>
     view = new ConceptTest.Views.Entry(model: entry)
-    $('#entries').append(view.render().el)
+    @$('#entries').append(view.render().el)
 
   handleError: (entry, response) ->
     if response.status == 422

@@ -5,11 +5,13 @@ class ConceptTest.Routers.Entries extends Backbone.Router
 
   initialize: ->
     @collection = new ConceptTest.Collections.Entries()
-    @collection.fetch()
+    @collection.reset($('#container').data('entries'))
 
   index: ->
     view = new ConceptTest.Views.EntriesIndex(collection: @collection)
     $('#container').html(view.render().el)
 
   show: (id) ->
-    alert "Entry #{id}"
+    @model = @collection.get(id)
+    view = new ConceptTest.Views.EntryShow(model: @model)
+    $('#container').html(view.render().el)

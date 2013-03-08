@@ -5,7 +5,7 @@ window.ConceptTest =
   Routers: {}
   initialize: ->
     new ConceptTest.Routers.Entries()
-    Backbone.history.start()
+    Backbone.history.start(pushState: true)
 
 $(document).ready ->
   ConceptTest.initialize()
